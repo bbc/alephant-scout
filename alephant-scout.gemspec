@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Alephant::Scout::VERSION
   spec.authors       = ["C. Oliver Godby"]
   spec.email         = ["oliver.godby02@bbc.co.uk"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{"Scout URLs to see if they are valid"}
+  spec.summary       = %q{"Scout URLs to see if they are valid"}
   spec.homepage      = ""
   spec.license       = "MIT"
 
