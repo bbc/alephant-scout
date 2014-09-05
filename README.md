@@ -33,11 +33,15 @@ bad_url = 'http://www.bbc.co.uk/persian/lobster-hatstand'
 
 # => "http://www.bbc.co.uk/persian/lobster-hatstand"
 
-Alephant::Scout::Url.valid?(good_url)
+url_scout = Alephant::Scout::Url.new()
+
+# = > #<Alephant::Scout::Url:[ObjectId]>
+
+url_scout.valid?(good_url)
 
 # => true
 
-Alephant::Scout::Url.valid?(bad_url)
+url_scout.valid?(bad_url)
 
 # => false
 ```
