@@ -20,7 +20,27 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```rb
+require 'alephant-scout'
+
+# => true
+
+good_url = 'http://www.bbc.co.uk/persian/world'
+
+# => "http://www.bbc.co.uk/persian/world"
+
+bad_url = 'http://www.bbc.co.uk/persian/lobster-hatstand'
+
+# => "http://www.bbc.co.uk/persian/lobster-hatstand"
+
+Alephant::Scout::Url.valid?(good_url)
+
+# => true
+
+Alephant::Scout::Url.valid?(bad_url)
+
+# => false
+```
 
 ## Contributing
 
