@@ -1,5 +1,7 @@
 # Alephant::Scout
 
+[![Gem Version](https://badge.fury.io/rb/alephant-scout.svg)](http://badge.fury.io/rb/alephant-scout)
+
 This is a gem to allow Alephant based applications to check the validity of an arbitrary URL / URI
 before enqueuing messages to render content based on the content of said URL / URI, thereby protecting
 render nodes from having to handle bogus URLs / URIs.
