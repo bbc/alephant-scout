@@ -1,5 +1,7 @@
 # Alephant::Scout
 
+[![Gem Version](https://badge.fury.io/rb/alephant-scout.svg)](http://badge.fury.io/rb/alephant-scout)
+
 This is a gem to allow Alephant based applications to check the validity of an arbitrary URL / URI
 before enqueuing messages to render content based on the content of said URL / URI, thereby protecting
 render nodes from having to handle bogus URLs / URIs.
@@ -23,33 +25,17 @@ Or install it yourself as:
 ```rb
 require 'alephant-scout'
 
+Alephant::Scout::Url.valid? 'http://bbc.co.uk/persian/world'
 # => true
 
-good_url = 'http://www.bbc.co.uk/persian/world'
-
-# => "http://www.bbc.co.uk/persian/world"
-
-bad_url = 'http://www.bbc.co.uk/persian/lobster-hatstand'
-
-# => "http://www.bbc.co.uk/persian/lobster-hatstand"
-
-url_scout = Alephant::Scout::Url.new()
-
-# = > #<Alephant::Scout::Url:[ObjectId]>
-
-url_scout.valid?(good_url)
-
-# => true
-
-url_scout.valid?(bad_url)
-
+Alephant::Scout::Url.valid? 'http://bbc.co.uk/batman'
 # => false
 ```
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+1. [Fork it!](https://github.com/bbc-news/alephant-scout/fork)
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Create new [Pull Request](https://github.com/bbc-news/alephant-scout/pulls).

@@ -1,30 +1,43 @@
 require 'spec_helper'
 
 describe Alephant::Scout::Url do
-  describe ".valid?(url)" do
+  describe '.valid?' do
     let(:response) { double('HTTParty::Response') }
-    it "is a valid url" do
-      allow(response).to receive(:code).and_return(200)
-      allow(HTTParty).to receive(:head).and_return(response)
-      expect(subject.valid?('http://www.avalidurl.com')).to be true
+
+    context 'using a valid URL' do
+      let(:url) { 'http://a-valid-url.com' }
+      before do
+        allow(HTTParty).to receive(:head).once.with(url).and_return(response)
+        allow(response).to receive(:code).once.and_return(200)
+      end
+      specify { expect(described_class.valid? url).to be }
     end
 
-    it "is a valid url with an issue" do
-      allow(response).to receive(:code).and_return(500)
-      allow(HTTParty).to receive(:head).and_return(response)
-      expect(subject.valid?('http://www.notavalidurl.com')).to be false
+    context 'using a valid URL with a server error' do
+      let(:url) { 'http://a-valid-url.com/error' }
+      before do
+        allow(HTTParty).to receive(:head).once.with(url).and_return(response)
+        allow(response).to receive(:code).once.and_return(500)
+      end
+      specify { expect(described_class.valid? url).to be false}
     end
 
-    it "is an invalid URL - i.e. host is resolved but resource does not exist" do
-      allow(response).to receive(:code).and_return(404)
-      allow(HTTParty).to receive(:head).and_return(response)
-      expect(subject.valid?('http://www.avalidurl.com/but/a/nonexistent/resource')).to be false
+     context 'using a valid URL with a missing resource' do
+      let(:url) { 'http://a-valid-url.com/missing.gif' }
+      before do
+        allow(HTTParty).to receive(:head).once.with(url).and_return(response)
+        allow(response).to receive(:code).once.and_return(404)
+      end
+      specify { expect(described_class.valid? url).to be false}
     end
 
-    it "is an invalid host - i.e. no DNS resolution" do
-      allow(response).to receive(:code).and_return(500)
-      allow(HTTParty).to receive(:head).and_raise("Hostname not found")
-      expect(subject.valid?('test://www.notavalidurl.test')).to be false
+     context 'using an invalid URL' do
+      let(:url) { 'http://an-invalid-url.com' }
+      before do
+        allow(HTTParty).to receive(:head).once.with(url).and_return(response)
+        allow(response).to receive(:code).once.and_return(500)
+      end
+      specify { expect(described_class.valid? url).to be false}
     end
   end
 end
